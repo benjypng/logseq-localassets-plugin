@@ -1,6 +1,8 @@
 import '@logseq/libs';
 
 const main = async () => {
+  console.log('logseq-localassets-plugin loaded');
+
   // Set path in settings for adding images to kanban board
   const currGraph = await logseq.App.getCurrentGraph();
   const pathToLogseq = `${currGraph.path}/assets`;
@@ -65,7 +67,7 @@ const main = async () => {
     ) {
       await logseq.Editor.updateBlock(
         payload.uuid,
-        `![${fileName}](${pathToLogseq}/${fileName}})`
+        `![${fileName}](${pathToLogseq}/${fileName})`
       );
     }
   });
