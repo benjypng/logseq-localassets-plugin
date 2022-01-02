@@ -14,6 +14,10 @@ const main = async () => {
     await logseq.Editor.insertAtEditingCursor(`{{renderer :localvideo, }}`);
   });
 
+  logseq.Editor.registerSlashCommand('local pdf - inline', async () => {
+    await logseq.Editor.insertAtEditingCursor(`{{renderer :localpdfinline, }}`);
+  });
+
   logseq.Editor.registerSlashCommand('local pdf', async () => {
     await logseq.Editor.insertAtEditingCursor(`{{renderer :localpdf, }}`);
   });
@@ -32,9 +36,10 @@ const main = async () => {
     if (
       !type === ':localaudio' ||
       !type === ':localvideo' ||
-      type === ':localpdf' ||
-      type === ':localimage' ||
-      type === ':localdocs'
+      !type === ':localpdf' ||
+      !type === ':localpdfinline' ||
+      !type === ':localimage' ||
+      !type === ':localdocs'
     )
       return;
 
@@ -48,20 +53,19 @@ const main = async () => {
         payload.uuid,
         `[:video {:controls true :src "${pathToLogseq}/${fileName}"}]`
       );
-    } else if (type === ':localpdf') {
+    } else if (type === ':localpdfinline') {
       await logseq.Editor.updateBlock(
         payload.uuid,
         `<object data="${pathToLogseq}/${fileName}" type="application/pdf" width="100%" height="800px"></object>`
       );
-    } else if (type === ':localimage') {
+    } else if (
+      type === ':localimage' ||
+      type === ':localdocs' ||
+      type === ':localpdf'
+    ) {
       await logseq.Editor.updateBlock(
         payload.uuid,
         `![${fileName}](${pathToLogseq}/${fileName}})`
-      );
-    } else if (type === ':localdocs') {
-      await logseq.Editor.updateBlock(
-        payload.uuid,
-        `[${fileName}](${pathToLogseq}/${fileName})`
       );
     }
   });
