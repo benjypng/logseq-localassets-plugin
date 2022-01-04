@@ -68,7 +68,7 @@ const main = async () => {
     } else if (type === ':localdocs') {
       await logseq.Editor.updateBlock(
         payload.uuid,
-        `[${fileName}](../assets/${fileName})`
+        `[📄 ${fileName}](../assets/${fileName})`
       );
     }
   });
