@@ -60,14 +60,15 @@ const main = async () => {
         payload.uuid,
         `<object data="${pathToLogseq}/${fileName}" type="application/pdf" width="100%" height="800px"></object>`
       );
-    } else if (
-      type === ':localimage' ||
-      type === ':localdocs' ||
-      type === ':localpdf'
-    ) {
+    } else if (type === ':localimage' || type === ':localpdf') {
       await logseq.Editor.updateBlock(
         payload.uuid,
         `![${fileName}](${pathToLogseq}/${fileName})`
+      );
+    } else if (type === ':localdocs') {
+      await logseq.Editor.updateBlock(
+        payload.uuid,
+        `[${fileName}](${pathToLogseq}/${fileName})`
       );
     }
   });
