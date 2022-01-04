@@ -63,12 +63,12 @@ const main = async () => {
     } else if (type === ':localimage' || type === ':localpdf') {
       await logseq.Editor.updateBlock(
         payload.uuid,
-        `![${fileName}](${pathToLogseq}/${fileName})`
+        `![${fileName}](../assets/${fileName})`
       );
     } else if (type === ':localdocs') {
       await logseq.Editor.updateBlock(
         payload.uuid,
-        `[${fileName}](${pathToLogseq}/${fileName})`
+        `[${fileName}](../assets/${fileName})`
       );
     }
   });
