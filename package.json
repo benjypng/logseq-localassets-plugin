@@ -1,6 +1,6 @@
 {
   "name": "logseq-localassets-plugin",
-  "version": "1.2",
+  "version": "1.21",
   "description": "",
   "main": "dist/index.html",
   "targets": {
