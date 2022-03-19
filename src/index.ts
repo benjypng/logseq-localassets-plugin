@@ -41,6 +41,7 @@ const main = () => {
         };
         fileInput.click();
     });
+    // Handle inline PDF using         `<object data="${pathToLogseq}/${fileName}" type="application/pdf" width="100%" height="800px"></object>`
 };
 
 logseq.ready(main).catch(console.error);
