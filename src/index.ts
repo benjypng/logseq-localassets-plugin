@@ -11,6 +11,7 @@ const main = () => {
         const uuid = currBlk.uuid;
 
         const fileInput = document.createElement("input");
+        const btn = document.createElement("button");
         fileInput.type = "file";
         fileInput.onchange = async (e) => {
             const { type, path } = (<HTMLInputElement>e.target).files[0];
@@ -39,7 +40,10 @@ const main = () => {
             }
             await logseq.Editor.exitEditingMode();
         };
-        fileInput.click();
+        btn.addEventListener("click", () => {
+            fileInput.click();
+        });
+        btn.click();
     });
     // Handle inline PDF using         `<object data="${pathToLogseq}/${fileName}" type="application/pdf" width="100%" height="800px"></object>`
 };
