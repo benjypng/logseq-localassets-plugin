@@ -62,12 +62,7 @@ const main = () => {
   // Register UI
   logseq.App.registerUIItem("toolbar", {
     key: "logseq-localassets-plugin",
-    template: `
-      <a data-on-click="embedLocalAsset"
-        class="button">
-        <i class="ti ti-file-symlink"></i>
-       </a>
-`,
+    template: `<label for="theFile2"><i class="ti ti-file-symlink"></i></label><input id="theFile2" type="file" hidden />`,
   });
 };
 
