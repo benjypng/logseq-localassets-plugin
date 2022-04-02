@@ -10,6 +10,8 @@ interface Files {
 }
 
 const main = () => {
+  console.log("logseq-localassets-plugin loaded");
+
   const handleFile = async (e, uuid) => {
     const { type, path }: Files = (<HTMLInputElement>e.target).files[0];
 
@@ -42,15 +44,13 @@ const main = () => {
   fileInput.type = "file";
   fileInput.id = "theFile";
   fileInput.style.display = "none";
-  console.log(fileInput);
-
+  document.body.appendChild(fileInput);
   logseq.provideModel({
     async embedLocalAsset() {
       //const currBlk = await logseq.Editor.getCurrentBlock();
       // const uuid = currBlk.uuid;
       //     fileInput.onchange = async (e) => {};
-      //@ts-ignore
-      fileInput.click();
+      document.getElementById("theFile").click();
     },
   });
 
