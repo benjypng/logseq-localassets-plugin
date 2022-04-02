@@ -50,7 +50,12 @@ const main = () => {
       //const currBlk = await logseq.Editor.getCurrentBlock();
       // const uuid = currBlk.uuid;
       //     fileInput.onchange = async (e) => {};
-      document.getElementById("theFile").click();
+      var elem = document.getElementById("theFile");
+      if (elem && document.createEvent) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", true, false);
+        elem.dispatchEvent(evt);
+      }
     },
   });
 
