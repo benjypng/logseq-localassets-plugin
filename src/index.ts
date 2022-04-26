@@ -11,6 +11,7 @@ interface Files {
 
 const main = async () => {
   console.log("logseq-localassets-plugin loaded");
+
   logseq.Editor.registerSlashCommand("Embed local file", async () => {
     const currBlk = await logseq.Editor.getCurrentBlock();
     const uuid = currBlk.uuid;
@@ -52,7 +53,6 @@ const main = async () => {
   });
 
   ///////// OLD /////////
-  // Set path in settings for adding images to kanban board
   const currGraph = await logseq.App.getCurrentGraph();
   const pathToLogseq = `${currGraph.path}/assets`;
 
