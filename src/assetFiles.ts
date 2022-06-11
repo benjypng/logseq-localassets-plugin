@@ -21,7 +21,8 @@ export const assetFiles = () => {
         type === "image/tiff" ||
         type === "image/bmp" ||
         type === "image/gif" ||
-        type === "image/jpeg"
+        type === "image/jpeg" ||
+        type === "image/svg+xml"
       ) {
         await logseq.Editor.updateBlock(uuid, `![${name}](../assets/${name})`);
       } else if (type === "audio/mpeg") {

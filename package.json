@@ -1,6 +1,6 @@
 {
   "name": "logseq-localassets-plugin",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "",
   "main": "dist/index.html",
   "targets": {
@@ -14,7 +14,7 @@
   "author": "hkgnp",
   "license": "MIT",
   "dependencies": {
-    "@logseq/libs": "^0.0.3"
+    "@logseq/libs": "^0.0.6"
   },
   "logseq": {
     "id": "logseq-localassets-plugin",
@@ -22,6 +22,6 @@
     "icon": "./icon.svg"
   },
   "devDependencies": {
-    "parcel": "^2.5.0"
+    "parcel": "^2.6.0"
   }
 }
