@@ -6,6 +6,7 @@ interface Files {
 
 function checkAsset(assetOrNonAsset: string, name: string, path: string) {
   if (assetOrNonAsset === "asset") {
+    console.log("test");
     return `.../assets/${name}`;
   } else {
     return path;
@@ -16,7 +17,6 @@ export default async function embedHelper(
   uuid: string,
   assetOrNonAsset: string
 ) {
-  console.log(uuid);
   const fileInput = document.createElement("input");
   const btn = document.createElement("button");
 
@@ -41,20 +41,16 @@ export default async function embedHelper(
     } else if (type === "audio/mpeg") {
       await logseq.Editor.updateBlock(
         uuid,
-        `[:audio {:controls true :src "${checkAsset(
-          assetOrNonAsset,
-          name,
-          path as string
-        )}"}]`
+        `[:audio {:controls true :src "${path}"}]`
       );
-    } else if (type === "video/mpeg" || type === "video/mp4") {
+    } else if (
+      type === "video/mpeg" ||
+      type === "video/mp4" ||
+      type === "video/webm"
+    ) {
       await logseq.Editor.updateBlock(
         uuid,
-        `[:video {:controls true :src "${checkAsset(
-          assetOrNonAsset,
-          name,
-          path as string
-        )}"}]`
+        `[:video {:controls true :src "${path}"}]`
       );
     } else {
       await logseq.Editor.updateBlock(

@@ -7,7 +7,6 @@ const main = async () => {
   logseq.Editor.registerSlashCommand(
     "Embed file from asset folder",
     async function (e) {
-      console.log(e);
       embedHelper(e.uuid, "asset");
     }
   );
