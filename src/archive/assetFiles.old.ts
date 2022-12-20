@@ -6,14 +6,13 @@ interface Files {
 
 export const assetFiles = () => {
   logseq.Editor.registerSlashCommand("Embed asset file", async () => {
-    const currBlk = await logseq.Editor.getCurrentBlock();
-    const uuid = currBlk.uuid;
+    const uuid = (await logseq.Editor.getCurrentBlock())!.uuid;
 
     const fileInput = document.createElement("input");
     const btn = document.createElement("button");
     fileInput.type = "file";
     fileInput.onchange = async (e) => {
-      const { type, name }: Files = (<HTMLInputElement>e.target).files[0];
+      const { type, name }: Files = (e.target as HTMLInputElement).files![0];
 
       if (
         type === "application/pdf" ||

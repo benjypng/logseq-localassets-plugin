@@ -1,20 +1,19 @@
 {
   "name": "logseq-localassets-plugin",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "",
   "main": "dist/index.html",
   "targets": {
     "main": false
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build --no-source-maps src/index.html --public-url ./"
+    "build": "rm -R dist && echo 'dist folder removed'; parcel build --no-source-maps src/index.html --public-url ./"
   },
   "keywords": [],
   "author": "hkgnp",
   "license": "MIT",
   "dependencies": {
-    "@logseq/libs": "^0.0.6"
+    "@logseq/libs": "^0.0.12"
   },
   "logseq": {
     "id": "logseq-localassets-plugin",
@@ -22,6 +21,6 @@
     "icon": "./icon.svg"
   },
   "devDependencies": {
-    "parcel": "^2.6.0"
+    "parcel": "^2.8.2"
   }
 }
