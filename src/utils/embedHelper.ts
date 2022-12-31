@@ -1,5 +1,3 @@
-import path from "path";
-
 interface Files {
   name: string;
   type: string;
@@ -10,7 +8,7 @@ function checkAsset(assetOrNonAsset: string, name: string, path: string) {
   if (assetOrNonAsset === "asset") {
     return `.../assets/${name}`;
   } else {
-    return path.normalize(path);
+    return path;
   }
 }
 
