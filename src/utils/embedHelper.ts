@@ -35,21 +35,26 @@ export default async function embedHelper(
     ) {
       await logseq.Editor.updateBlock(
         uuid,
-        `![${name}](${checkAsset(assetOrNonAsset, name, path as string)})`
+        `![${name}](file:///${checkAsset(assetOrNonAsset, name, path as string)})`
       );
-    } else if (type === "audio/mpeg") {
+    } else if (
+      type === "audio/mpeg" ||
+      type === "audio/ogg" ||
+      type === "audio/wav"
+    ) {
       await logseq.Editor.updateBlock(
         uuid,
-        `[:audio {:controls true :src "${path}"}]`
+        `![🎵 ${name}](file:///${path})`
       );
     } else if (
       type === "video/mpeg" ||
       type === "video/mp4" ||
-      type === "video/webm"
+      type === "video/webm" ||
+      type === "video/ogg"
     ) {
       await logseq.Editor.updateBlock(
         uuid,
-        `[:video {:controls true :src "${path}"}]`
+        `![🎥 ${name}](file:///${path})`
       );
     } else {
       await logseq.Editor.updateBlock(
