@@ -19,7 +19,7 @@ async function returnFilePath(
   );
 }
 
-export default async function embedHelper(uuid: string, isAsset: boolean) {
+export async function embedHelper(uuid: string, isAsset: boolean) {
   const fileInput = document.createElement("input");
   const btn = document.createElement("button");
 
@@ -37,6 +37,29 @@ export default async function embedHelper(uuid: string, isAsset: boolean) {
       returnFilePath(uuid, isAsset, "📄", name, path as string);
     }
     await logseq.Editor.exitEditingMode();
+  };
+
+  btn.addEventListener("click", () => {
+    fileInput.click();
+  });
+  btn.click();
+}
+
+export async function linkToDir(uuid: string) {
+  const fileInput = document.createElement("input");
+  const btn = document.createElement("button");
+
+  fileInput.type = "file";
+  fileInput.setAttribute("webkitdirectory", "");
+  fileInput.setAttribute("directory", "");
+
+  fileInput.onchange = async () => {
+    //@ts-expect-error
+    const { path, name, webkitRelativePath } = fileInput.files![0];
+    await logseq.Editor.updateBlock(
+      uuid,
+      `[${webkitRelativePath.split("/")[0]}](file://${path!.split(name)[0]})`
+    );
   };
 
   btn.addEventListener("click", () => {

@@ -1,5 +1,5 @@
 import "@logseq/libs";
-import embedHelper from "./utils/embedHelper";
+import { embedHelper, linkToDir } from "./utils/embedHelper";
 
 const main = async () => {
   console.log("logseq-localassets-plugin loaded");
@@ -15,6 +15,13 @@ const main = async () => {
     "Embed file from other folder",
     async function (e) {
       embedHelper(e.uuid, false);
+    }
+  );
+
+  logseq.Editor.registerSlashCommand(
+    "Create link to folder",
+    async function (e) {
+      linkToDir(e.uuid);
     }
   );
 };
