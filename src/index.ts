@@ -7,14 +7,14 @@ const main = async () => {
   logseq.Editor.registerSlashCommand(
     "Embed file from asset folder",
     async function (e) {
-      embedHelper(e.uuid, "asset");
+      embedHelper(e.uuid, true);
     }
   );
 
   logseq.Editor.registerSlashCommand(
     "Embed file from other folder",
     async function (e) {
-      embedHelper(e.uuid, "non-asset");
+      embedHelper(e.uuid, false);
     }
   );
 };

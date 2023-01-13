@@ -4,61 +4,41 @@ interface Files {
   path?: string;
 }
 
-function checkAsset(assetOrNonAsset: string, name: string, path: string) {
-  if (assetOrNonAsset === "asset") {
-    return `.../assets/${name}`;
-  } else {
-    return path;
-  }
+async function returnFilePath(
+  uuid: string,
+  isAsset: boolean,
+  emoji: any,
+  name: string,
+  path: string
+) {
+  await logseq.Editor.updateBlock(
+    uuid,
+    isAsset
+      ? `[${emoji} ${name}](../assets/${name})`
+      : `[${emoji} ${name}](file://${path})`
+  );
 }
 
-export default async function embedHelper(
-  uuid: string,
-  assetOrNonAsset: string
-) {
+export default async function embedHelper(uuid: string, isAsset: boolean) {
   const fileInput = document.createElement("input");
   const btn = document.createElement("button");
 
   fileInput.type = "file";
-  fileInput.onchange = async (e) => {
-    const { type, path, name }: Files = (e.target as HTMLInputElement)
-      .files![0];
+  fileInput.onchange = async () => {
+    const { type, path, name }: Files = fileInput.files![0];
 
-    if (
-      type === "application/pdf" ||
-      type === "image/png" ||
-      type === "image/tiff" ||
-      type === "image/bmp" ||
-      type === "image/gif" ||
-      type === "image/jpeg" ||
-      type === "image/svg+xml"
-    ) {
-      await logseq.Editor.updateBlock(
-        uuid,
-        `![${name}](${checkAsset(assetOrNonAsset, name, path as string)})`
-      );
-    } else if (type === "audio/mpeg") {
-      await logseq.Editor.updateBlock(
-        uuid,
-        `[:audio {:controls true :src "${path}"}]`
-      );
-    } else if (
-      type === "video/mpeg" ||
-      type === "video/mp4" ||
-      type === "video/webm"
-    ) {
-      await logseq.Editor.updateBlock(
-        uuid,
-        `[:video {:controls true :src "${path}"}]`
-      );
+    if (type.startsWith("image")) {
+      returnFilePath(uuid, isAsset, "🖼", name, path as string);
+    } else if (type.startsWith("video")) {
+      returnFilePath(uuid, isAsset, "📹 ", name, path as string);
+    } else if (type.startsWith("audio")) {
+      returnFilePath(uuid, isAsset, "🎧", name, path as string);
     } else {
-      await logseq.Editor.updateBlock(
-        uuid,
-        `[📄 ${name}](${checkAsset(assetOrNonAsset, name, path as string)})`
-      );
+      returnFilePath(uuid, isAsset, "📄", name, path as string);
     }
     await logseq.Editor.exitEditingMode();
   };
+
   btn.addEventListener("click", () => {
     fileInput.click();
   });
