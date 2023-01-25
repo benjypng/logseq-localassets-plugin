@@ -14,8 +14,8 @@ async function returnFilePath(
   await logseq.Editor.updateBlock(
     uuid,
     isAsset
-      ? `[${emoji} ${name}](../assets/${name})`
-      : `[${emoji} ${name}](file://${path})`
+      ? `![${emoji} ${name}](../assets/${name})`
+      : `![${emoji} ${name}](file://${path})`
   );
 }
 
