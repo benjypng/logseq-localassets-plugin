@@ -12,7 +12,7 @@ To embed a file from your `assets` folder, start by typing `/Embed file from ass
 
 ## Embed file from other folder
 
-To embed a file from a non-Logseq folder, start by typing `/Embed file from another folder`. An explorer window will open and you can select any file from a non-Logseq folder.
+To embed a file from a non-Logseq folder, start by typing `/Embed file from other folder`. An explorer window will open and you can select any file from a non-Logseq folder.
 
 # Related
 
