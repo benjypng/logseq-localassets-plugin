@@ -24,6 +24,27 @@ const main = async () => {
       linkToDir(e.uuid);
     },
   );
+
+  logseq.Editor.registerSlashCommand("Render local asset", async (e) => {
+    await logseq.Editor.insertAtEditingCursor(
+      `{{renderer :localasset_${e.uuid}}}`,
+    );
+  });
+  logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
+    const { uuid } = payload;
+    const [type] = payload.arguments;
+    if (!type) return;
+    if (!type.startsWith(":localasset")) return;
+
+    const path_one = `/Users/ben/Desktop`;
+
+    logseq.provideUI({
+      key: `localasset_${uuid}`,
+      slot,
+      reset: true,
+      template: `<img src="file://${path_one}/pic.png" />`,
+    });
+  });
 };
 
 logseq.ready(main).catch(console.error);
