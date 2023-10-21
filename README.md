@@ -4,6 +4,8 @@
 
 Plugin to embed files from your Logseq `assets` folder or from any other folder on your computer, by selecting it from an explorer window.
 
+![](https://i.imgur.com/l9wtxa7.gif)
+
 # Usage
 
 ## Embed file from asset folder
