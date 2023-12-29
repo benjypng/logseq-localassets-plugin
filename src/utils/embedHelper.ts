@@ -56,9 +56,12 @@ export async function linkToDir(uuid: string) {
   fileInput.onchange = async () => {
     //@ts-expect-error
     const { path, name, webkitRelativePath } = fileInput.files![0];
+    const blk = await logseq.Editor.getBlock(uuid);
     await logseq.Editor.updateBlock(
       uuid,
-      `[${webkitRelativePath.split("/")[0]}](file://${path!.split(name)[0]})`,
+      `${blk?.content} [${webkitRelativePath.split("/")[0]}](file://${
+        path!.split(name)[0]
+      })`,
     );
   };
 
